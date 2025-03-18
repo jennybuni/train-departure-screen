@@ -93,7 +93,9 @@ def renderTime(draw, width, height):
     rawTime = datetime.now().time()
     hour, minute, second = str(rawTime).split('.')[0].split(':')
 
-    w1, h1 = draw.textsize("{}:{}".format(hour, minute), fontBoldLarge)
+    bbox = draw.textbbox((0, 0), "{}:{}".format(hour, minute), font=fontBoldLarge)
+    w1 = bbox[2] - bbox[0]
+    h1 = bbox[3] - bbox[1]
 
     draw.text(((width - 84) / 2, 0), text="{}:{}".format(hour, minute),
               font=fontBoldLarge, fill="yellow")
@@ -139,10 +141,12 @@ def drawBlankSignage(device, width, height, departureStation):
     global stationRenderCount, pauseCount
 
     with canvas(device) as draw:
-        welcomeSize = draw.textsize("Welcome to", fontBold)
+        bbox = draw.textbbox((0, 0), "Welcome to", font=fontBold)
+        welcomeSize = (bbox[2] - bbox[0], bbox[3] - bbox[1])
 
     with canvas(device) as draw:
-        stationSize = draw.textsize(departureStation, fontBold)
+        bbox = draw.textbbox((0, 0), departureStation, font=fontBold)
+        stationSize = (bbox[2] - bbox[0], bbox[3] - bbox[1])
 
     device.clear()
 
@@ -180,14 +184,18 @@ def drawSignage(device, width, height, data):
     departures, firstDepartureDestinations, departureStation = data
 
     with canvas(device) as draw:
-        w, h = draw.textsize(callingAt, font)
+        bbox = draw.textbbox((0, 0), callingAt, font=font)
+        w = bbox[2] - bbox[0]
+        h = bbox[3] - bbox[1]
 
     callingWidth = w
     width = virtualViewport.width
 
     # First measure the text size
     with canvas(device) as draw:
-        w, h = draw.textsize(status, font)
+        bbox = draw.textbbox((0, 0), status, font=font)
+        w = bbox[2] - bbox[0]
+        h = bbox[3] - bbox[1]
 
     rowOneA = snapshot(width - w, 16, renderDestination(departures[0]), interval=10)
     rowOneB = snapshot(w, 16, renderServiceStatus(departures[0]), interval=10)
