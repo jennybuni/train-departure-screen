@@ -1,0 +1,14 @@
+pygame==2.6.1
+Pillow==11.1.0
+zeep==4.2.1
+requests==2.31.0
+timeloop==1.0.2
+luma.core==2.4.2; sys_platform != "linux" or platform_machine != "armv7l"
+luma.emulator==1.5.0; sys_platform != "linux" or platform_machine != "armv7l"
+RPi.GPIO==0.7.1; sys_platform == "linux" and platform_machine == "armv7l"
+spidev==3.6; sys_platform == "linux" and platform_machine == "armv7l"
+
+
+
+
+

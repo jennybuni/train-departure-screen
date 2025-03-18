@@ -1,0 +1,8 @@
+setup.py
+src/RPi/__init.py
+src/RPi/__init__.py
+src/RPi.GPIO.egg-info/PKG-INFO
+src/RPi.GPIO.egg-info/SOURCES.txt
+src/RPi.GPIO.egg-info/dependency_links.txt
+src/RPi.GPIO.egg-info/top_level.txt
+src/RPi/GPIO/__init__.py

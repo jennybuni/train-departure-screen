@@ -1,0 +1,2 @@
+RPi.GPIO==0.7.1; platform_machine == "armv7l"
+spidev==3.6; platform_machine == "armv7l"
